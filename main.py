@@ -12,11 +12,11 @@ with open("node_list.json", mode='r', encoding="utf-8_sig") as f:
         path = address + get_transaction_by_hash_path
         print(node["#"])
         try:
-            if(requests.get(path).status_code == 200):
+            if(requests.get(path, timeout=10).status_code == 200):
                 status_ok_nodes.append(address)
         except:
             pass
 
 with open("result.txt", mode='w') as f:
     for node in status_ok_nodes:
-        f.write(str(address) + "\n")
+        f.write(str(node) + "\n")
